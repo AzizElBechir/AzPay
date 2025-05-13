@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card fade-in">
+    <h2 class="form-title">Make a Payment</h2>
+    
+    <p id="validation-message" class="form-error {% if not errors %}hidden{% endif %}">
+        {% if errors %}Please correct the errors in the form.{% endif %}
+    </p>
+    
+    <form id="payment-form" method="POST" action="{{ url_for('payment') }}" class="card-form">
+        <div class="form-group">
+            <label for="amount" class="form-label">Payment Amount</label>
+            <div style="position: relative;">
+                <span style="position: absolute; left: 1rem; top: 0.75rem; color: var(--color-gray-500);">$</span>
+                <input type="text" id="amount" name="amount" class="form-input {% if errors and 'amount' in errors %}is-invalid{% endif %}" 
+                       placeholder="0.00" style="padding-left: 2rem;" value="{{ form.amount if form else '' }}">
+                <div class="form-error">{{ errors.amount if errors and 'amount' in errors else '' }}</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="card_number" class="form-label">Card Number</label>
+            <div class="card-input-wrapper">
+                <span class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="14" x="2" y="5" rx="2" />
+                        <line x1="2" x2="22" y1="10" y2="10" />
+                    </svg>
+                </span>
+                <input type="text" id="card_number" name="card_number" class="form-input card-number-input {% if errors and 'card_number' in errors %}is-invalid{% endif %}" 
+                       placeholder="1234 5678 9012 3456" maxlength="19" value="{{ form.card_number if form else '' }}">
+                <div class="form-error">{{ errors.card_number if errors and 'card_number' in errors else '' }}</div>
+            </div>
+        </div>
+        
+        <div class="card-details">
+            <div class="form-group">
+                <label for="expiry_date" class="form-label">Expiry Date</label>
+                <input type="text" id="expiry_date" name="expiry_date" class="form-input {% if errors and 'expiry_date' in errors %}is-invalid{% endif %}" 
+                       placeholder="MM/YY" maxlength="5" value="{{ form.expiry_date if form else '' }}">
+                <div class="form-error">{{ errors.expiry_date if errors and 'expiry_date' in errors else '' }}</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="cvv" class="form-label">Security Code (CVV)</label>
+                <input type="text" id="cvv" name="cvv" class="form-input {% if errors and 'cvv' in errors %}is-invalid{% endif %}" 
+                       placeholder="123" maxlength="4" value="{{ form.cvv if form else '' }}">
+                <div class="form-error">{{ errors.cvv if errors and 'cvv' in errors else '' }}</div>
+                <div class="form-hint">3 or 4 digits on the back of your card</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="cardholder_name" class="form-label">Cardholder Name</label>
+            <input type="text" id="cardholder_name" name="cardholder_name" class="form-input {% if errors and 'cardholder_name' in errors %}is-invalid{% endif %}" 
+                   placeholder="John Doe" value="{{ form.cardholder_name if form else '' }}">
+            <div class="form-error">{{ errors.cardholder_name if errors and 'cardholder_name' in errors else '' }}</div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">Pay Now</button>
+    </form>
+</div>
+{% endblock %}

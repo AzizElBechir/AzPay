@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="hero fade-in">
+    <h1 class="hero-title">Simple, Secure Online Payments</h1>
+    <p class="hero-description">
+        TalebPay provides a hassle-free way to make payments online with advanced security and instant confirmation.
+    </p>
+    <a href="{{ url_for('payment') }}" class="btn btn-primary">Make a Payment</a>
+</section>
+
+<div class="card">
+    <h2 class="form-title">Why Choose TalebPay?</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 1rem;">
+        <div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-gray-800);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; margin-right: 0.5rem; color: var(--color-primary);">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Secure Transactions
+            </h3>
+            <p style="color: var(--color-gray-600);">
+                All payments are encrypted and processed with industry-standard security protocols.
+            </p>
+        </div>
+        <div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-gray-800);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; margin-right: 0.5rem; color: var(--color-primary);">
+                    <path d="M12 2v20"></path>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                Fast Processing
+            </h3>
+            <p style="color: var(--color-gray-600);">
+                Transactions are processed instantly with immediate confirmation.
+            </p>
+        </div>
+        <div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-gray-800);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; margin-right: 0.5rem; color: var(--color-primary);">
+                    <path d="M2 4v16"></path>
+                    <path d="M22 4v16"></path>
+                    <path d="M12 8.5v7"></path>
+                    <path d="m9 9 3-3 3 3"></path>
+                    <path d="m9 15 3 3 3-3"></path>
+                </svg>
+                Transaction History
+            </h3>
+            <p style="color: var(--color-gray-600);">
+                View and track all your past payments in one convenient location.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

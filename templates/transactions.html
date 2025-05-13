@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card fade-in">
+    <h2 class="form-title">Transaction History</h2>
+    
+    {% if transactions %}
+    <div style="overflow-x: auto;">
+        <table class="transactions-table">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Date</th>
+                    <th>Card</th>
+                    <th>Cardholder</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.date }}</td>
+                    <td>•••• {{ transaction.card_last_four }}</td>
+                    <td>{{ transaction.cardholder }}</td>
+                    <td class="transaction-amount">${{ "%.2f"|format(transaction.amount) }}</td>
+                    <td>
+                        <span class="transaction-status status-{{ transaction.status }}">
+                            {{ transaction.status.capitalize() }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p style="text-align: center; color: var(--color-gray-600); padding: 2rem 0;">
+        No transactions found. <a href="{{ url_for('payment') }}" style="color: var(--color-primary);">Make a payment</a> to see your transaction history.
+    </p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card fade-in">
+    <h2 class="form-title">Login</h2>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="form-error" style="margin-bottom: 1rem;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" action="{{ url_for('login') }}" class="card-form">
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-input" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">Login</button>
+        
+        <p style="text-align: center; margin-top: 1rem; color: var(--color-gray-600);">
+            Don't have an account? <a href="{{ url_for('signup') }}" style="color: var(--color-primary);">Sign up</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
